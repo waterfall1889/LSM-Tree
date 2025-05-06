@@ -82,8 +82,8 @@ private:
         file.close();
         int idx = 0;
         for (i = 0; i < max; ++i) {
-            //auto res = store.search_knn(test_text[i], 5);
-            auto res = store.search_knn_hnsw(test_text[i], 5);
+            auto res = store.search_knn(test_text[i], 5);
+            //auto res = store.search_knn_hnsw(test_text[i], 5);
             for(auto j : res) {
                 EXPECT(ans[idx], j.second);
                 EXPECT(store.get(j.first), j.second);

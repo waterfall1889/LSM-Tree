@@ -53,6 +53,9 @@ KVStore::KVStore(const std::string &dir) :
             TIME = std::max(TIME, cur.getTime()); // 更新时间戳
         }
     }
+
+    //load_embedding_from_disk("embedding_data/");
+    
 }
 
 KVStore::~KVStore()
@@ -67,6 +70,8 @@ KVStore::~KVStore()
     }
     ss.putFile(ss.getFilename().data());
     compaction(); // 从0层开始尝试合并
+    merge_vector();// merge all
+    collectIntoFiles("embedding_data");
 }
 
 /**
@@ -78,11 +83,38 @@ void KVStore::put(uint64_t key, const std::string &val) {
     std::string res  = s->search(key);
     if (!res.length()) { // new add
         nxtsize += 12 + val.length();
-    } else
+    } 
+    else
         nxtsize = nxtsize - res.length() + val.length(); // change string
-    if (nxtsize + 10240 + 32 <= MAXSIZE)
+
+    if (nxtsize + 10240 + 32 <= MAXSIZE){
         s->insert(key, val); // 小于等于（不超过） 2MB
+        if(val != DEL){
+            tmp_vec.push_back(val);
+            tmp_key.push_back(key);
+        }
+        else{
+            //merge_vector();
+            uint64_t dim = 768;
+            bufferMap[key] = std::vector<float>(dim, std::numeric_limits<float>::max());
+        }
+        
+    }
     else {
+        if(val != DEL){
+            tmp_vec.push_back(val);
+            tmp_key.push_back(key);
+        }
+        else{
+            //merge_vector();
+            uint64_t dim = 768;
+            bufferMap[key] = std::vector<float>(dim, std::numeric_limits<float>::max());
+        }
+            
+        merge_vector();
+        //insertVectorNode();
+        
+
         sstable ss(s);
         s->reset();
         std::string url  = ss.getFilename();
@@ -96,8 +128,7 @@ void KVStore::put(uint64_t key, const std::string &val) {
         compaction();
         s->insert(key, val);
     }
-    tmp_vec.push_back(val);
-    tmp_key.push_back(key);
+    
 }
 
 /**
@@ -159,41 +190,55 @@ bool KVStore::del(uint64_t key) {
         return false; // not exist
     put(key, DEL);    // put a del marker
     
-    auto it = vectorMap.find(key);
+    /*auto it = vectorMap.find(key);
     if(it!=vectorMap.end()){
-	vectorMap.erase(key);
+	    vectorMap.erase(key);
     }
     // if in the tmp vector
     // TODO:
     tmp_key.erase(std::remove(tmp_key.begin(), tmp_key.end(), key), tmp_key.end());
-    tmp_vec.erase(std::remove(tmp_vec.begin(), tmp_vec.end(), res), tmp_vec.end());
+    tmp_vec.erase(std::remove(tmp_vec.begin(), tmp_vec.end(), res), tmp_vec.end());*/
     return true;
 }
 
-/**
- * This resets the kvstore. All key-value pairs should be removed,
- * including memtable and all sstables files.
- */
 void KVStore::reset() {
-    s->reset(); // 先清空memtable
+    s->reset(); // 先清空 memtable
+    bufferMap.clear();
     vectorMap.clear();
     tmp_vec.clear();
     tmp_key.clear();
-    //clear the searchRoute
+
+    // 清空搜索路径
     this->searchRoute.clear();
+
+    // 清空每一层的 SSTable 文件
     std::vector<std::string> files;
-    for (int level = 0; level <= totalLevel; ++level) { // 依层清空每一层的sstables
+    for (int level = 0; level <= totalLevel; ++level) {
         std::string path = std::string("./data/level-") + std::to_string(level);
-        int size         = utils::scanDir(path, files);
+        int size = utils::scanDir(path, files);
         for (int i = 0; i < size; ++i) {
             std::string file = path + "/" + files[i];
-            utils::rmfile(file.data());
+            utils::rmfile(file.c_str());
         }
-        utils::rmdir(path.data());
+        utils::rmdir(path.c_str());
         sstableIndex[level].clear();
     }
+
+    // 删除 vectors 目录及其中的所有文件
+    std::string vecDir = "./embedding_data/vectors";
+    if (utils::dirExists(vecDir)) {
+        files.clear();
+        int size = utils::scanDir(vecDir, files);
+        for (int i = 0; i < size; ++i) {
+            std::string file = vecDir + "/" + files[i];
+            utils::rmfile(file.c_str());
+        }
+        utils::rmdir(vecDir.c_str());
+    }
+
     totalLevel = -1;
 }
+
 
 /**
  * Return a list including all the key-value pair between key1 and key2.
@@ -638,6 +683,7 @@ std::string KVStore::fetchString(std::string file, int startOffset, uint32_t len
 
 std::vector<std::pair<std::uint64_t, std::string>> KVStore::search_knn(std::string query, int k){//use as similarity
    merge_vector();
+   //std::cout << "New Size:" << vectorMap.size()<< std::endl;
    auto query_vector = embedding_single(query);  // 获取查询向量
    // 存储相似度和对应的键
    auto start = std::chrono::high_resolution_clock::now();
@@ -690,26 +736,40 @@ std::vector<std::pair<std::uint64_t, std::string>> KVStore::search_knn_hnsw(std:
 	return this->searchRoute.search_knn(query_vector,k);
 }
 
-void KVStore::merge_vector(){
-   std::string joined_prompts = join(tmp_vec, "\n");
-   auto embeddings = embedding_batch(joined_prompts);
-   //the later one will replace the earlier one
-   auto key_read = tmp_key.begin();
-   auto vector_read = embeddings.begin();
-   while(key_read!=tmp_key.end()){
-       vectorMap[(*key_read)] = (*vector_read);
-       //std::cout<<"Insert:"<<(*key_read)<<std::endl;
-       key_read++;
-       vector_read++;
-   }
-   //clear all vectors.
-   tmp_vec.clear();
-   tmp_key.clear();
+void KVStore::merge_vector() {
+    if (tmp_key.empty()) {
+        return;
+    }
 
-   collectIntoFiles("data");
+    std::string joined_prompts = join(tmp_vec, "\n");
+    auto embeddings = embedding_batch(joined_prompts);
+
+    // 将嵌入向量放入 bufferMap
+    auto key_read = tmp_key.begin();
+    auto vector_read = embeddings.begin();
+    while (key_read != tmp_key.end()) {
+        bufferMap[*key_read] = *vector_read;
+        ++key_read;
+        ++vector_read;
+    }
+
+    // 清空 tmp 缓存
+    tmp_vec.clear();
+    tmp_key.clear();
+
+    // 将 bufferMap 中所有数据转移至 vectorMap（替换或插入）
+    for (const auto& [key, vec] : bufferMap) {
+        vectorMap[key] = vec;  // 替换已有向量
+    }
+
+    bufferMap.clear();  // 清空 buffer
 }
 
+
 void KVStore::insertVectorNode(){
+    if(tmp_key.empty()){
+        return;
+    }
    std::string joined_prompts = join(tmp_vec, "\n");
    auto embeddings = embedding_batch(joined_prompts);
    //the later one will replace the earlier one
@@ -729,32 +789,44 @@ void KVStore::insertVectorNode(){
    tmp_vec.clear();
    tmp_key.clear();
 
-   collectIntoFiles("data");
+   
 }
 
-void KVStore::collectIntoFiles(const std::string &data_root){
-    if (!utils::dirExists(data_root)) {
-        if (utils::mkdir(data_root.c_str()) != 0) {
-            std::cerr << "Failed to make directory: " << data_root << std::endl;
+void KVStore::collectIntoFiles(const std::string &data_root) {
+    if (this->vectorMap.empty()) {
+        return;
+    }
+
+    std::string vectorsDir = data_root + "/vectors";
+
+    // 判断文件是否已存在（通过检查 vectors 目录是否存在）
+    bool needWriteDim = !utils::dirExists(vectorsDir);  // 判断 vectors 目录是否存在
+
+    // 如果 vectors 目录不存在，则创建
+    if (!utils::dirExists(vectorsDir)) {
+        if (utils::mkdir(vectorsDir.c_str()) != 0) {
+            std::cerr << "Failed to make directory: " << vectorsDir << std::endl;
             return;
         }
     }
 
-    // 构造文件路径
-    std::string filePath = data_root + "/vectors.txt";
+    std::string filePath = vectorsDir + "/vectors.txt";
 
-    // 打开文件以追加二进制模式写入
+
+    // 打开文件以追加模式写入
     std::ofstream outFile(filePath, std::ios::binary | std::ios::app);
     if (!outFile) {
         std::cerr << "Failed to open file: " << filePath << std::endl;
         return;
     }
 
-    // 向量维度
     const uint64_t dim = 768;
 
-    // 写入维度信息
-    outFile.write(reinterpret_cast<const char*>(&dim), sizeof(uint64_t));
+    // 仅在第一次创建文件时写入维度信息
+    if (needWriteDim) {
+        //std::cout << "NEED" <<std ::endl;
+        outFile.write(reinterpret_cast<const char*>(&dim), sizeof(uint64_t));
+    }
 
     // 遍历写入 vectorMap 中的每一项
     for (const auto& [key, vec] : vectorMap) {
@@ -763,13 +835,67 @@ void KVStore::collectIntoFiles(const std::string &data_root){
             continue;
         }
 
-        // 写入 key
         outFile.write(reinterpret_cast<const char*>(&key), sizeof(uint64_t));
-
-        // 写入向量
         outFile.write(reinterpret_cast<const char*>(vec.data()), sizeof(float) * dim);
     }
 
     outFile.close();
-    vectorMap.clear();
+}
+
+
+void KVStore::load_embedding_from_disk(const std::string &data_root) {
+    std::string filePath = data_root + "/vectors/vectors.txt";
+
+    std::ifstream inFile(filePath, std::ios::binary | std::ios::ate);
+    if (!inFile) {
+        std::cerr << "Failed to open vector file: " << filePath << std::endl;
+        return;
+    }
+
+    std::streamsize fileSize = inFile.tellg();
+    if (fileSize < sizeof(uint64_t)) {
+        std::cerr << "File too small: missing dimension info." << std::endl;
+        return;
+    }
+
+    // Step 1: 获取向量维度 dim
+    inFile.seekg(0, std::ios::beg);
+    uint64_t dim = 0;
+    inFile.read(reinterpret_cast<char*>(&dim), sizeof(uint64_t));
+
+    // Step 2: 定义每个块的大小
+    const std::streamsize blockSize = sizeof(uint64_t) + sizeof(float) * dim;
+    const std::streamsize blockStart = sizeof(uint64_t); // block 开始偏移（跳过前8字节 dim）
+
+    std::streamsize totalBlocks = (fileSize - blockStart) / blockSize;
+
+    std::unordered_set<uint64_t> seenKeys;
+
+    // Step 3: 从后往前遍历数据块
+    for (int64_t i = totalBlocks - 1; i >= 0; --i) {
+        std::streamoff offset = blockStart + i * blockSize;
+        inFile.seekg(offset, std::ios::beg);
+
+        uint64_t key;
+        inFile.read(reinterpret_cast<char*>(&key), sizeof(uint64_t));
+
+        // 已加载该 key，跳过
+        if (seenKeys.count(key)) continue;
+
+        std::vector<float> vec(dim);
+        inFile.read(reinterpret_cast<char*>(vec.data()), sizeof(float) * dim);
+
+        // Step 5: 检查是否为删除标志
+        bool isDeleted = std::all_of(vec.begin(), vec.end(), [](float val) {
+            return val == std::numeric_limits<float>::max();
+        });
+
+        if (!isDeleted) {
+            vectorMap[key] = std::move(vec);
+        }
+
+        seenKeys.insert(key);
+    }
+
+    inFile.close();
 }

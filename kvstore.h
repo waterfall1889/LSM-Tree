@@ -348,6 +348,8 @@ private:
     std::vector<uint64_t> tmp_key;
 
 public:
+    // buffer-tmp-map
+    std::unordered_map<uint64_t, std::vector<float>> bufferMap;
     // a map to manage the vector
     // key-vector
     std::unordered_map<uint64_t, std::vector<float>> vectorMap;
