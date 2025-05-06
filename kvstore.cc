@@ -3,15 +3,18 @@
 #include "skiplist.h"
 #include "sstable.h"
 #include "utils.h"
-
+#include <cmath>
 #include <algorithm>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <queue>
 #include <set>
+#include <chrono>
 #include <string>
 #include <utility>
+#include "embedding.h"
+
 
 static const std::string DEL = "~DELETED~";
 const uint32_t MAXSIZE       = 2 * 1024 * 1024;
@@ -93,6 +96,8 @@ void KVStore::put(uint64_t key, const std::string &val) {
         compaction();
         s->insert(key, val);
     }
+    tmp_vec.push_back(val);
+    tmp_key.push_back(key);
 }
 
 /**
@@ -153,6 +158,15 @@ bool KVStore::del(uint64_t key) {
     if (!res.length())
         return false; // not exist
     put(key, DEL);    // put a del marker
+    
+    auto it = vectorMap.find(key);
+    if(it!=vectorMap.end()){
+	vectorMap.erase(key);
+    }
+    // if in the tmp vector
+    // TODO:
+    tmp_key.erase(std::remove(tmp_key.begin(), tmp_key.end(), key), tmp_key.end());
+    tmp_vec.erase(std::remove(tmp_vec.begin(), tmp_vec.end(), res), tmp_vec.end());
     return true;
 }
 
@@ -162,6 +176,11 @@ bool KVStore::del(uint64_t key) {
  */
 void KVStore::reset() {
     s->reset(); // 先清空memtable
+    vectorMap.clear();
+    tmp_vec.clear();
+    tmp_key.clear();
+    //clear the searchRoute
+    this->searchRoute.clear();
     std::vector<std::string> files;
     for (int level = 0; level <= totalLevel; ++level) { // 依层清空每一层的sstables
         std::string path = std::string("./data/level-") + std::to_string(level);
@@ -616,3 +635,141 @@ std::string KVStore::fetchString(std::string file, int startOffset, uint32_t len
     return result;
 }
 
+
+std::vector<std::pair<std::uint64_t, std::string>> KVStore::search_knn(std::string query, int k){//use as similarity
+   merge_vector();
+   auto query_vector = embedding_single(query);  // 获取查询向量
+   // 存储相似度和对应的键
+   auto start = std::chrono::high_resolution_clock::now();
+   std::vector<std::pair<float, std::uint64_t>> similarities;
+   // 遍历 vectorMap 计算相似度
+    for (const auto& entry : vectorMap) {
+       float similarity = getSimilarity(query_vector, entry.second);  // 计算相似度
+       similarities.push_back({similarity, entry.first});  // 存储相似度和对应的键
+    }
+
+    // 按照相似度降序排序
+    std::sort(similarities.begin(), similarities.end(), std::greater<>());
+
+    // 返回最相似的 k 个键值对
+    std::vector<std::pair<std::uint64_t, std::string>> result;
+    for (int i = 0; i < k && i < similarities.size(); ++i) {
+        std::string value = get(similarities[i].second);  // 获取对应的值
+        result.push_back({similarities[i].second, value});  // 存储键值对
+    }
+    auto end = std::chrono::high_resolution_clock::now();
+    	// 计算时间差并转换为微秒
+    // auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    //std::cout << "Function execution time: " << duration.count() << " microseconds" << std::endl;
+    // std::cout<<duration.count()<< std::endl;
+    return result;
+}
+
+float KVStore::getSimilarity(const std::vector<float> &v1,const std::vector<float> &v2) const{
+    auto it1 = v1.begin();
+    auto it2 = v2.begin();
+    float n1=0.0f;
+    float n2=0.0f;
+    float s =0.0f;
+    while(it1!=v1.end()){
+        s += (*it1)*(*it2);
+        n1 += (*it1)*(*it1);
+        n2 += (*it2)*(*it2);
+        it1++;
+        it2++;
+    }
+    if(n1==0&&n2==0){return 0;}
+    return s/(std::sqrt(n1)*std::sqrt(n2));
+}
+
+
+std::vector<std::pair<std::uint64_t, std::string>> KVStore::search_knn_hnsw(std::string query, int k){
+	insertVectorNode();
+	//searchRoute.printAll();
+	auto query_vector = embedding_single(query);  // 获取查询向量
+	return this->searchRoute.search_knn(query_vector,k);
+}
+
+void KVStore::merge_vector(){
+   std::string joined_prompts = join(tmp_vec, "\n");
+   auto embeddings = embedding_batch(joined_prompts);
+   //the later one will replace the earlier one
+   auto key_read = tmp_key.begin();
+   auto vector_read = embeddings.begin();
+   while(key_read!=tmp_key.end()){
+       vectorMap[(*key_read)] = (*vector_read);
+       //std::cout<<"Insert:"<<(*key_read)<<std::endl;
+       key_read++;
+       vector_read++;
+   }
+   //clear all vectors.
+   tmp_vec.clear();
+   tmp_key.clear();
+
+   collectIntoFiles("data");
+}
+
+void KVStore::insertVectorNode(){
+   std::string joined_prompts = join(tmp_vec, "\n");
+   auto embeddings = embedding_batch(joined_prompts);
+   //the later one will replace the earlier one
+   auto key_read = tmp_key.begin();
+   auto string_read = tmp_vec.begin();
+   auto vector_read = embeddings.begin();
+   while(key_read!=tmp_key.end()){
+       vectorMap[(*key_read)] = (*vector_read);
+       searchRoute.insertNode((*key_read),(*string_read),(*vector_read));
+       //searchRoute.printAll();
+       //std::cout<<"Insert:"<<(*key_read)<<std::endl;
+       key_read++;
+       string_read++;
+       vector_read++;
+   }
+   //clear all vectors.
+   tmp_vec.clear();
+   tmp_key.clear();
+
+   collectIntoFiles("data");
+}
+
+void KVStore::collectIntoFiles(const std::string &data_root){
+    if (!utils::dirExists(data_root)) {
+        if (utils::mkdir(data_root.c_str()) != 0) {
+            std::cerr << "Failed to make directory: " << data_root << std::endl;
+            return;
+        }
+    }
+
+    // 构造文件路径
+    std::string filePath = data_root + "/vectors.txt";
+
+    // 打开文件以追加二进制模式写入
+    std::ofstream outFile(filePath, std::ios::binary | std::ios::app);
+    if (!outFile) {
+        std::cerr << "Failed to open file: " << filePath << std::endl;
+        return;
+    }
+
+    // 向量维度
+    const uint64_t dim = 768;
+
+    // 写入维度信息
+    outFile.write(reinterpret_cast<const char*>(&dim), sizeof(uint64_t));
+
+    // 遍历写入 vectorMap 中的每一项
+    for (const auto& [key, vec] : vectorMap) {
+        if (vec.size() != dim) {
+            std::cerr << "Invalid vector size for key: " << key << std::endl;
+            continue;
+        }
+
+        // 写入 key
+        outFile.write(reinterpret_cast<const char*>(&key), sizeof(uint64_t));
+
+        // 写入向量
+        outFile.write(reinterpret_cast<const char*>(vec.data()), sizeof(float) * dim);
+    }
+
+    outFile.close();
+    vectorMap.clear();
+}
