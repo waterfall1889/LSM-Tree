@@ -35,9 +35,15 @@ add_executable(VectorPersistent2 Vector_Persistent_Test_Phase2.cpp kvstore_api.h
         skiplist.cpp skiplist.h sstable.cpp sstable.h
         bloom.cpp bloom.h MurmurHash3.h utils.h test.h
         sstablehead.cpp sstablehead.h)
+
+add_executable(HNSWDeleteTest HNSW_Delete_Test.cpp kvstore_api.h kvstore.h kvstore.cc
+        skiplist.cpp skiplist.h sstable.cpp sstable.h
+        bloom.cpp bloom.h MurmurHash3.h utils.h test.h
+        sstablehead.cpp sstablehead.h)
 # 链接 embedding 模块
 target_link_libraries(correctness PRIVATE embedding)
 target_link_libraries(persistence PRIVATE embedding)
 target_link_libraries(timeCompare PRIVATE embedding)
 target_link_libraries(VectorPersistent1 PRIVATE embedding)
 target_link_libraries(VectorPersistent2 PRIVATE embedding)
+target_link_libraries(HNSWDeleteTest PRIVATE embedding)

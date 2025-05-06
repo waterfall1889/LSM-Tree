@@ -730,14 +730,13 @@ float KVStore::getSimilarity(const std::vector<float> &v1,const std::vector<floa
 
 
 std::vector<std::pair<std::uint64_t, std::string>> KVStore::search_knn_hnsw(std::string query, int k){
-	insertVectorNode();
-	//searchRoute.printAll();
+	merge_vector();
 	auto query_vector = embedding_single(query);  // 获取查询向量
 	return this->searchRoute.search_knn(query_vector,k);
 }
 
 void KVStore::merge_vector() {
-    if (tmp_key.empty()) {
+    if (tmp_key.empty() && bufferMap.empty()){
         return;
     }
 
@@ -746,10 +745,13 @@ void KVStore::merge_vector() {
 
     // 将嵌入向量放入 bufferMap
     auto key_read = tmp_key.begin();
+    auto string_read = tmp_vec.begin();
     auto vector_read = embeddings.begin();
     while (key_read != tmp_key.end()) {
         bufferMap[*key_read] = *vector_read;
+        searchRoute.insertNode((*key_read),(*string_read),(*vector_read));
         ++key_read;
+        ++string_read;
         ++vector_read;
     }
 
@@ -766,31 +768,7 @@ void KVStore::merge_vector() {
 }
 
 
-void KVStore::insertVectorNode(){
-    if(tmp_key.empty()){
-        return;
-    }
-   std::string joined_prompts = join(tmp_vec, "\n");
-   auto embeddings = embedding_batch(joined_prompts);
-   //the later one will replace the earlier one
-   auto key_read = tmp_key.begin();
-   auto string_read = tmp_vec.begin();
-   auto vector_read = embeddings.begin();
-   while(key_read!=tmp_key.end()){
-       vectorMap[(*key_read)] = (*vector_read);
-       searchRoute.insertNode((*key_read),(*string_read),(*vector_read));
-       //searchRoute.printAll();
-       //std::cout<<"Insert:"<<(*key_read)<<std::endl;
-       key_read++;
-       string_read++;
-       vector_read++;
-   }
-   //clear all vectors.
-   tmp_vec.clear();
-   tmp_key.clear();
 
-   
-}
 
 void KVStore::collectIntoFiles(const std::string &data_root) {
     if (this->vectorMap.empty()) {

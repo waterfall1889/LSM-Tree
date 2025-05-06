@@ -19,12 +19,15 @@
 #include <unordered_set>
 #include <vector>
 
+
 class SearchLayers {
 public:
     const int M              = 6;  // 每个节点的最小连接数
     const int M_max          = 8;  // 每个节点的最大连接数
     const int m_L            = 6;  // 最大层数
     const int efConstruction = 50; // 构建时的候选集合大小
+    const std::string DEL = "~DELETED~";
+    
 
     struct Node {
         uint64_t nodeKey;
@@ -44,11 +47,28 @@ public:
     };
 
     std::vector<Node *> allNodes;
+    std::vector<std::vector<float>> deleted_nodes; // deleted nodes
     Node *entryPoint = nullptr;
 
     SearchLayers() {
         srand(time(nullptr));
     } // 初始化随机种子
+
+    bool isDeleted(const std::vector<float> &v) {
+        for (const auto& del_vec : deleted_nodes) {
+            if (v.size() != del_vec.size()) 
+                continue;
+            bool equal = true;
+            for (size_t i = 0; i < v.size(); ++i) {
+                if (v[i] != del_vec[i]) {
+                    equal = false;
+                    break;
+                }
+            }
+            if (equal) return true;
+        }
+        return false;
+    }
 
     // 保持原有随机层数生成方式
     int getLevel() {
@@ -71,6 +91,26 @@ public:
 
     // 插入逻辑
     void insertNode(uint64_t k, const std::string &val, const std::vector<float> &var) {
+        //first need to search whether the key exists.
+        Node *target = nullptr;
+        for (Node* node : allNodes) {
+            if (node && node->nodeKey == k) {
+                target = node;
+                break;
+            }
+        }
+        
+        if(target){
+            if(val == DEL){
+                this->deleted_nodes.push_back(target->data);
+                return;
+            }
+            else{
+                this->deleted_nodes.push_back(target->data);
+            }
+        }
+
+        // if not and the mark is not DEL, then insert.
         int level = getLevel();
         if (this->allNodes.empty()) {
             level = m_L;
@@ -193,7 +233,9 @@ public:
 
         // 收集最接近的 ef 个节点
         while (!candidates.empty()) {
-            results.push_back(candidates.top().second);
+            if(!isDeleted(candidates.top().second->data)){
+                results.push_back(candidates.top().second);
+            }
             candidates.pop();
         }
 
@@ -318,21 +360,6 @@ public:
         allNodes.clear();
         entryPoint = nullptr;
     }
-
-    void printAll() {
-        std::cout << "[ALL nodes]\n";
-        for (auto node : allNodes) {
-            std::cout << "Node " << node->nodeKey << ":: Level " << node->level << "\n";
-            for (int l = 0; l <= node->level; ++l) {
-                std::cout << "  Level " << l << " connected to " << node->connections[l].size() << " nodes:";
-                // 输出每一层连接的节点的 key
-                for (Node *connectedNode : node->connections[l]) {
-                    std::cout << " " << connectedNode->nodeKey;
-                }
-                std::cout << "\n";
-            }
-        }
-    }
 };
 
 class KVStore : public KVStoreAPI {
@@ -389,8 +416,6 @@ public:
     std::vector<std::pair<std::uint64_t, std::string>> search_knn_hnsw(std::string query, int k);
 
     void merge_vector(); // merge the tmp and transfer into vectors.
-
-    void insertVectorNode();
 
     void collectIntoFiles(const std::string &data_root);
     //store all pairs in vectorMap.
