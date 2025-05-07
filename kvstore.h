@@ -22,10 +22,10 @@
 
 class SearchLayers {
 public:
-    const int M              = 6;  // 每个节点的最小连接数
-    const int M_max          = 8;  // 每个节点的最大连接数
-    const int m_L            = 6;  // 最大层数
-    const int efConstruction = 50; // 构建时的候选集合大小
+    int M              = 6;  // 每个节点的最小连接数
+    int M_max          = 8;  // 每个节点的最大连接数
+    int m_L            = 6;  // 最大层数
+    int efConstruction = 50; // 构建时的候选集合大小
     const std::string DEL = "~DELETED~";
     
 
@@ -55,6 +55,9 @@ public:
     } // 初始化随机种子
 
     bool isDeleted(const std::vector<float> &v) {
+        if(deleted_nodes.empty()){
+            return false;
+        }
         for (const auto& del_vec : deleted_nodes) {
             if (v.size() != del_vec.size()) 
                 continue;
@@ -65,8 +68,11 @@ public:
                     break;
                 }
             }
-            if (equal) return true;
+            if (equal) {
+                return true;
+            }
         }
+
         return false;
     }
 
@@ -233,9 +239,7 @@ public:
 
         // 收集最接近的 ef 个节点
         while (!candidates.empty()) {
-            if(!isDeleted(candidates.top().second->data)){
-                results.push_back(candidates.top().second);
-            }
+            results.push_back(candidates.top().second);
             candidates.pop();
         }
 
@@ -342,14 +346,16 @@ public:
         std::reverse(tempResults.begin(), tempResults.end());
 
         // 选取前 k 个最接近的节点
-        for (int i = 0; i < std::min(k, (int)tempResults.size()); ++i) {
-            results.push_back({tempResults[i]->nodeKey, tempResults[i]->value});
+        int m = 0;
+        for (int i = 0; i < (int)tempResults.size() && m < k; ) {
+            //std::cout << "try found:"<<i<<std::endl;
+            if(!isDeleted(tempResults[i]->data)){
+                results.push_back({tempResults[i]->nodeKey, tempResults[i]->value});
+                m++;
+                
+            }
+            ++i;
         }
-        auto end = std::chrono::high_resolution_clock::now();
-        // 计算时间差并转换为微秒
-        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-        // std::cout << "Function execution time: " << duration.count() << " microseconds" << std::endl;
-        // std::cout << duration.count() << std::endl;
         return results;
     }
 
@@ -358,6 +364,7 @@ public:
         for (auto node : allNodes)
             delete node;
         allNodes.clear();
+        deleted_nodes.clear();
         entryPoint = nullptr;
     }
 };
@@ -422,6 +429,12 @@ public:
 
     void load_embedding_from_disk(const std::string &data_root);
     //load into vectorMap
+
+    void save_hnsw_index_to_disk(const std::string &hnsw_data_root);
+
+    void load_hnsw_index_from_disk(const std::string &hnsw_data_root);
+
+    void removeDirectoryRecursive(const std::string& path);
 };
 
 struct DataBlock{

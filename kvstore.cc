@@ -52,10 +52,7 @@ KVStore::KVStore(const std::string &dir) :
             sstableIndex[totalLevel].push_back(cur);
             TIME = std::max(TIME, cur.getTime()); // 更新时间戳
         }
-    }
-
-    //load_embedding_from_disk("embedding_data/");
-    
+    }    
 }
 
 KVStore::~KVStore()
@@ -71,7 +68,9 @@ KVStore::~KVStore()
     ss.putFile(ss.getFilename().data());
     compaction(); // 从0层开始尝试合并
     merge_vector();// merge all
+
     collectIntoFiles("embedding_data");
+    save_hnsw_index_to_disk("hnsw_data_root");
 }
 
 /**
@@ -94,9 +93,9 @@ void KVStore::put(uint64_t key, const std::string &val) {
             tmp_key.push_back(key);
         }
         else{
-            //merge_vector();
             uint64_t dim = 768;
             bufferMap[key] = std::vector<float>(dim, std::numeric_limits<float>::max());
+            this->searchRoute.insertNode(key,DEL,std::vector<float>(dim, std::numeric_limits<float>::max()));
         }
         
     }
@@ -106,15 +105,12 @@ void KVStore::put(uint64_t key, const std::string &val) {
             tmp_key.push_back(key);
         }
         else{
-            //merge_vector();
             uint64_t dim = 768;
             bufferMap[key] = std::vector<float>(dim, std::numeric_limits<float>::max());
+            this->searchRoute.insertNode(key,DEL,std::vector<float>(dim, std::numeric_limits<float>::max()));
         }
             
         merge_vector();
-        //insertVectorNode();
-        
-
         sstable ss(s);
         s->reset();
         std::string url  = ss.getFilename();
@@ -189,17 +185,27 @@ bool KVStore::del(uint64_t key) {
     if (!res.length())
         return false; // not exist
     put(key, DEL);    // put a del marker
-    
-    /*auto it = vectorMap.find(key);
-    if(it!=vectorMap.end()){
-	    vectorMap.erase(key);
-    }
-    // if in the tmp vector
-    // TODO:
-    tmp_key.erase(std::remove(tmp_key.begin(), tmp_key.end(), key), tmp_key.end());
-    tmp_vec.erase(std::remove(tmp_vec.begin(), tmp_vec.end(), res), tmp_vec.end());*/
     return true;
 }
+
+void KVStore::removeDirectoryRecursive(const std::string& path) {
+    std::vector<std::string> entries;
+    if (!utils::scanDir(path, entries)) {
+        utils::rmdir(path.c_str());  // 删除空目录本身
+        return;
+    }
+    
+    for (const auto& entry : entries) {
+        std::string fullPath = path + "/" + entry;
+        if (utils::dirExists(fullPath)) {
+            removeDirectoryRecursive(fullPath);  // 递归删除子目录
+        } else {
+            utils::rmfile(fullPath.c_str());     // 删除文件
+        }
+    }
+    utils::rmdir(path.c_str());  // 删除空目录本身
+}
+
 
 void KVStore::reset() {
     s->reset(); // 先清空 memtable
@@ -213,6 +219,7 @@ void KVStore::reset() {
 
     // 清空每一层的 SSTable 文件
     std::vector<std::string> files;
+
     for (int level = 0; level <= totalLevel; ++level) {
         std::string path = std::string("./data/level-") + std::to_string(level);
         int size = utils::scanDir(path, files);
@@ -236,9 +243,14 @@ void KVStore::reset() {
         utils::rmdir(vecDir.c_str());
     }
 
+    //delete hnsws
+    std::string hnsw_dir = "./hnsw_data_root";
+    if (utils::dirExists(hnsw_dir)) {
+        removeDirectoryRecursive(hnsw_dir);
+    }
+
     totalLevel = -1;
 }
-
 
 /**
  * Return a list including all the key-value pair between key1 and key2.
@@ -288,10 +300,7 @@ void KVStore::scan(uint64_t key1, uint64_t key2, std::list<std::pair<uint64_t, s
             int hIndex = it.lowerBound(key1);
             int tIndex = it.lowerBound(key2);
             if (hIndex < it.getCnt()) { // 此sstable可用
-                // sstable ss; // 读sstable
                 std::string url = it.getFilename();
-                // ss.loadFile(url.data());
-
                 heap.push(myPair(it.getKey(hIndex), it.getTime(), hIndex, cnt++, url));
                 head.push_back(hIndex);
                 if (it.search(key2) == tIndex)
@@ -410,7 +419,6 @@ bool KVStore::compaction(int curLevel) {
             }
         }
     }
-
 
     // 所有相关的SSTable
     std::vector<sstablehead> allSSTables;
@@ -652,30 +660,30 @@ char strBuf[2097152];
 std::string KVStore::fetchString(std::string file, int startOffset, uint32_t len) {
     // TODO here
     // open file in binary mode
-    std::ifstream inFile(file, std::ios::binary);
+    std::ifstream headFile(file, std::ios::binary);
     // test if the file is opened correctly
-    if (!inFile) {
+    if (!headFile) {
         std::cerr << "Error: Unable to open file " << file << std::endl;
         return "";
     }
     // find the offset
-    inFile.seekg(startOffset, std::ios::beg);
+    headFile.seekg(startOffset, std::ios::beg);
     // test if the offset is valid
-    if (!inFile) {
+    if (!headFile) {
         std::cerr << "Error: Unable to seek to the offset " << startOffset << std::endl;
         return "";
     }
     // read the string
-    inFile.read(strBuf, len);
+    headFile.read(strBuf, len);
     // test if it is successful to read
-    if (!inFile) {
+    if (!headFile) {
         std::cerr << "Error: Unable to read " << len << " bytes from file" << std::endl;
         return "";
     }
     // transfer to string
     std::string result(strBuf, len);
     // close file
-    inFile.close();
+    headFile.close();
     // return
     return result;
 }
@@ -686,7 +694,6 @@ std::vector<std::pair<std::uint64_t, std::string>> KVStore::search_knn(std::stri
    //std::cout << "New Size:" << vectorMap.size()<< std::endl;
    auto query_vector = embedding_single(query);  // 获取查询向量
    // 存储相似度和对应的键
-   auto start = std::chrono::high_resolution_clock::now();
    std::vector<std::pair<float, std::uint64_t>> similarities;
    // 遍历 vectorMap 计算相似度
     for (const auto& entry : vectorMap) {
@@ -703,11 +710,6 @@ std::vector<std::pair<std::uint64_t, std::string>> KVStore::search_knn(std::stri
         std::string value = get(similarities[i].second);  // 获取对应的值
         result.push_back({similarities[i].second, value});  // 存储键值对
     }
-    auto end = std::chrono::high_resolution_clock::now();
-    	// 计算时间差并转换为微秒
-    // auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-    //std::cout << "Function execution time: " << duration.count() << " microseconds" << std::endl;
-    // std::cout<<duration.count()<< std::endl;
     return result;
 }
 
@@ -824,22 +826,22 @@ void KVStore::collectIntoFiles(const std::string &data_root) {
 void KVStore::load_embedding_from_disk(const std::string &data_root) {
     std::string filePath = data_root + "/vectors/vectors.txt";
 
-    std::ifstream inFile(filePath, std::ios::binary | std::ios::ate);
-    if (!inFile) {
+    std::ifstream headFile(filePath, std::ios::binary | std::ios::ate);
+    if (!headFile) {
         std::cerr << "Failed to open vector file: " << filePath << std::endl;
         return;
     }
 
-    std::streamsize fileSize = inFile.tellg();
+    std::streamsize fileSize = headFile.tellg();
     if (fileSize < sizeof(uint64_t)) {
         std::cerr << "File too small: missing dimension info." << std::endl;
         return;
     }
 
     // Step 1: 获取向量维度 dim
-    inFile.seekg(0, std::ios::beg);
+    headFile.seekg(0, std::ios::beg);
     uint64_t dim = 0;
-    inFile.read(reinterpret_cast<char*>(&dim), sizeof(uint64_t));
+    headFile.read(reinterpret_cast<char*>(&dim), sizeof(uint64_t));
 
     // Step 2: 定义每个块的大小
     const std::streamsize blockSize = sizeof(uint64_t) + sizeof(float) * dim;
@@ -852,16 +854,16 @@ void KVStore::load_embedding_from_disk(const std::string &data_root) {
     // Step 3: 从后往前遍历数据块
     for (int64_t i = totalBlocks - 1; i >= 0; --i) {
         std::streamoff offset = blockStart + i * blockSize;
-        inFile.seekg(offset, std::ios::beg);
+        headFile.seekg(offset, std::ios::beg);
 
         uint64_t key;
-        inFile.read(reinterpret_cast<char*>(&key), sizeof(uint64_t));
+        headFile.read(reinterpret_cast<char*>(&key), sizeof(uint64_t));
 
         // 已加载该 key，跳过
         if (seenKeys.count(key)) continue;
 
         std::vector<float> vec(dim);
-        inFile.read(reinterpret_cast<char*>(vec.data()), sizeof(float) * dim);
+        headFile.read(reinterpret_cast<char*>(vec.data()), sizeof(float) * dim);
 
         // Step 5: 检查是否为删除标志
         bool isDeleted = std::all_of(vec.begin(), vec.end(), [](float val) {
@@ -875,5 +877,196 @@ void KVStore::load_embedding_from_disk(const std::string &data_root) {
         seenKeys.insert(key);
     }
 
-    inFile.close();
+    headFile.close();
+}
+
+void KVStore::save_hnsw_index_to_disk(const std::string &hnsw_data_root){
+    if (this->searchRoute.allNodes.empty()) {
+        return;
+    }
+    // 如果 目录不存在，则创建
+    if (!utils::dirExists(hnsw_data_root)) {
+        if (utils::mkdir(hnsw_data_root.c_str()) != 0) {
+            std::cerr << "Failed to make directory: " << hnsw_data_root << std::endl;
+            return;
+        }
+    }
+    // global information
+    std::string globalfilePath = hnsw_data_root + "/global_header.bin";
+    std::ofstream outFile(globalfilePath, std::ios::binary | std::ios::trunc);
+    if (!outFile) {
+        std::cerr << "Failed to open file: " << globalfilePath << std::endl;
+        return;
+    }
+    const uint32_t dim = 768;
+    const uint32_t MapSize = searchRoute.allNodes.size();
+    outFile.write(reinterpret_cast<const char*>(&searchRoute.M), sizeof(uint32_t));
+    outFile.write(reinterpret_cast<const char*>(&searchRoute.M_max), sizeof(uint32_t));
+    outFile.write(reinterpret_cast<const char*>(&searchRoute.efConstruction), sizeof(uint32_t));
+    outFile.write(reinterpret_cast<const char*>(&searchRoute.m_L), sizeof(uint32_t));
+    outFile.write(reinterpret_cast<const char*>(&MapSize), sizeof(uint32_t));
+    outFile.write(reinterpret_cast<const char*>(&dim), sizeof(uint32_t));
+
+    // consider the entryPoint and save the main key
+    // std::cout << "Entry Key:" << searchRoute.entryPoint->nodeKey << std::endl;
+    uint32_t entry = 0;
+    if(!searchRoute.entryPoint){
+        entry = searchRoute.entryPoint->nodeKey;
+    }
+    outFile.write(reinterpret_cast<const char*>(&entry), sizeof(uint32_t));
+    outFile.close();
+
+    // deleted nodes
+    std::string deleted_Path = hnsw_data_root + "/deleted_nodes.bin";
+    std::ofstream outFile2(deleted_Path, std::ios::binary | std::ios::trunc);
+    if (!outFile2) {
+        std::cerr << "Failed to open file: " << deleted_Path << std::endl;
+        return;
+    }
+
+    for (const auto&  vec : searchRoute.deleted_nodes) {
+        if (vec.size() != dim) {
+            continue;
+        }
+        outFile2.write(reinterpret_cast<const char*>(vec.data()), sizeof(float) * dim);
+    }
+    outFile2.close();
+
+    // node information
+    std::string node_root = hnsw_data_root + "/nodes";
+    if(!utils::dirExists(node_root)){
+        if (utils::mkdir(node_root.c_str()) != 0) {
+            std::cerr << "Failed to make directory: " << node_root << std::endl;
+            return;
+        }
+    }
+    for(int node_id = 0;node_id < this->searchRoute.allNodes.size(); ++node_id){
+        std::string node_sub_root = hnsw_data_root + "/nodes/" + std::to_string(node_id);
+        if(!utils::dirExists(node_sub_root)){
+            if (utils::mkdir(node_sub_root.c_str()) != 0) {
+                std::cerr << "Failed to make directory: " << node_sub_root << std::endl;
+                return;
+            }
+        }
+
+        // node head
+        std::string node_header_path = hnsw_data_root + "/nodes/" + std::to_string(node_id) + "/header.bin";
+        std::ofstream outFileNode(node_header_path, std::ios::binary | std::ios::trunc);
+        if(!outFileNode){
+            std::cerr << "Failed to open file: " << deleted_Path << std::endl;
+            return;
+        }
+        outFileNode.write(reinterpret_cast<const char*>(&this->searchRoute.allNodes[node_id]->level),sizeof(uint32_t));
+        outFileNode.write(reinterpret_cast<const char*>(&this->searchRoute.allNodes[node_id]->nodeKey),sizeof(uint64_t));
+        outFileNode.close();
+
+        // node layers
+        std::string node_edges = node_sub_root + "/edges"; 
+        if(!utils::dirExists(node_edges)){
+            if (utils::mkdir(node_edges.c_str()) != 0) {
+                std::cerr << "Failed to make directory: " << node_edges << std::endl;
+                return;
+            }
+        }
+
+        int maxL = searchRoute.allNodes[node_id]->level;
+        //std::cout << "Node " << node_id <<std::endl;
+        for(int s = 0;s<= maxL;++s){
+            std::string edge_path = node_edges + "/" + std::to_string(s) + ".bin";
+            std::ofstream edgeFile(edge_path, std::ios::binary | std::ios::trunc);
+
+            if(!edgeFile){
+                std::cerr << "Failed to open file: " << edge_path << std::endl;
+                return;
+            }
+            uint32_t BlockTotal = searchRoute.allNodes[node_id]->connections[s].size();
+            edgeFile.write(reinterpret_cast<const char*>(&BlockTotal),sizeof(uint32_t));
+            //std::cout <<"Level "<<s<<":";
+            for(const auto & tmp_nodes : searchRoute.allNodes[node_id]->connections[s]){
+                uint32_t tmpKey = tmp_nodes->nodeKey;
+                //std::cout << tmpKey << " ";
+                edgeFile.write(reinterpret_cast<const char*>(&tmpKey),sizeof(uint32_t));
+            }
+            //std::cout << std::endl;
+            edgeFile.close();
+        }
+    }
+
+}
+
+void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root){
+    // load vectors first
+    load_embedding_from_disk("./embedding_data");
+
+    uint32_t entryKey = 0;
+    uint32_t mapSize = 0;
+    uint32_t dim = 0;
+    this->searchRoute.clear();
+
+    //read the global information
+    std::string global_head = hnsw_data_root + "/global_header.bin";
+    std::ifstream headFile(global_head, std::ios::binary);
+    if (!headFile) {
+        std::cerr << "Failed to open file:" << global_head << std::endl;
+        return;
+    }
+
+    const int mount_head = 7;
+    std::vector<uint32_t> vec(mount_head);
+
+    headFile.read(reinterpret_cast<char*>(vec.data()), sizeof(uint32_t) * mount_head);
+
+    if (!headFile || vec.size()!=7) {
+        std::cerr << "Unable to read:" << global_head << std::endl;
+    } 
+    else {
+        searchRoute.M = vec[0];
+        searchRoute.M_max = vec[1];
+        searchRoute.efConstruction = vec[2];
+        searchRoute.m_L = vec[3];
+        mapSize = vec[4];
+        dim = vec[5];
+        entryKey = vec[6];
+    }
+
+    headFile.close();
+
+
+    //read the deleted nodes
+    bool emptyDeletedSlot = 0;
+    std::string deleted_path = hnsw_data_root + "/deleted_nodes.bin";
+    std::ifstream deletedFile(deleted_path, std::ios::binary);
+    if (!deletedFile) {
+        std::cerr << "Failed to open file: " << deleted_path << std::endl;
+        return;
+    }
+    // 检查文件是否为空
+    deletedFile.seekg(0, std::ios::end);
+    std::streampos fileSize = deletedFile.tellg();
+    if (fileSize == 0) {
+        deletedFile.close();
+        emptyDeletedSlot = 1;
+    }
+
+    // 回到文件开头
+    deletedFile.seekg(0, std::ios::beg);
+
+    while (emptyDeletedSlot == 0) {
+        std::vector<float> vec2(dim);
+        deletedFile.read(reinterpret_cast<char*>(vec2.data()), sizeof(float) * dim);
+        if (deletedFile.gcount() == sizeof(float) * dim) {
+            searchRoute.deleted_nodes.push_back(std::move(vec2));
+        } 
+        else {
+            break;
+        }
+    }
+    deletedFile.close();
+
+    //read nodes:
+    //1.read level and key
+    //2.fill the connections
+    
+    // set entryPoint
+
 }

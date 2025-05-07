@@ -47,6 +47,8 @@ int main() {
   }
 
   auto result2 = store.search_knn(fake_random_delete_content, 3);
+  //std::cout << "Current deleted:" << store.searchRoute.deleted_nodes.size() << std::endl;
+  //std::cout << "Result size:" << result2.size()<<std::endl;
   if (result2.size() != 3) {
     std::cout << "Error: result2.size() != 3" << std::endl;
     pass = false;
@@ -60,6 +62,7 @@ int main() {
 
   if (pass) {
     std::cout << "Test passed" << std::endl;
+    
   } else {
     std::cout << "Test failed" << std::endl;
   }

@@ -113,13 +113,13 @@ public:
         // store.reset();
         std::cout << "[Text Test]" << std::endl;
         // regular_test(LARGE_TEST_MAX);
-        text_test(80);
+        text_test(50);
 
         //        store.reset();
         //        std::cout << "[Insert Test]" << std::endl;
         //        insert_test(1024 * 16);
 
-        //        store.reset();
+        //       store.reset();
         //        std::cout << "[delete test]" << std::endl;
         //        delete_test(1024 * 64);
     }

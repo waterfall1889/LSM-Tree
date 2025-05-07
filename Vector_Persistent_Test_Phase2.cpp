@@ -17,8 +17,8 @@ int main() {
   KVStore store("data/");
 
   // TODO: uncomment this line when you have implemented the function
-   store.load_embedding_from_disk("embedding_data/");
-std::cout << "Size:" << store.vectorMap.size() << std::endl;
+  store.load_embedding_from_disk("embedding_data/");
+  //std::cout << "Size:" << store.vectorMap.size() << std::endl;
   bool pass = true;
 
   std::vector<std::string> text = load_text("data/trimmed_text.txt");
