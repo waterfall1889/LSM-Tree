@@ -22,20 +22,23 @@
 
 class SearchLayers {
 public:
-    int M              = 6;  // 每个节点的最小连接数
-    int M_max          = 8;  // 每个节点的最大连接数
-    int m_L            = 6;  // 最大层数
-    int efConstruction = 50; // 构建时的候选集合大小
+    int all_counts     = 0;
+    int M              = 8;  // 每个节点的最小连接数
+    int M_max          = 12;  // 每个节点的最大连接数
+    int m_L            = 3;  // 最大层数
+    int efConstruction = 120; // 构建时的候选集合大小
     const std::string DEL = "~DELETED~";
     
 
     struct Node {
+        uint32_t nodeID;
         uint64_t nodeKey;
         std::string value;
         std::vector<float> data;
         std::vector<std::vector<Node *>> connections; // 分层连接
         std::vector<Node *> nearPoints;
         int level;
+        int isValid;
 
         Node(uint64_t k, const std::string &val, const std::vector<float> &var, int level) :
             nodeKey(k),
@@ -43,6 +46,7 @@ public:
             data(var),
             level(level) {
             connections.resize(level + 1);
+            isValid = 1;
         }
     };
 
@@ -52,29 +56,8 @@ public:
 
     SearchLayers() {
         srand(time(nullptr));
+        all_counts = 0;
     } // 初始化随机种子
-
-    bool isDeleted(const std::vector<float> &v) {
-        if(deleted_nodes.empty()){
-            return false;
-        }
-        for (const auto& del_vec : deleted_nodes) {
-            if (v.size() != del_vec.size()) 
-                continue;
-            bool equal = true;
-            for (size_t i = 0; i < v.size(); ++i) {
-                if (v[i] != del_vec[i]) {
-                    equal = false;
-                    break;
-                }
-            }
-            if (equal) {
-                return true;
-            }
-        }
-
-        return false;
-    }
 
     // 保持原有随机层数生成方式
     int getLevel() {
@@ -108,13 +91,20 @@ public:
         
         if(target){
             if(val == DEL){
-                this->deleted_nodes.push_back(target->data);
+                //std::cout << "del:" << target->nodeKey <<std::endl;
+                target->isValid = 0;
                 return;
             }
             else{
-                this->deleted_nodes.push_back(target->data);
+                //std::cout << "reinsert:" << target->nodeKey <<std::endl;
+                target->isValid = 0;
             }
         }
+
+        if(val == DEL){
+            return;
+        }
+
 
         // if not and the mark is not DEL, then insert.
         int level = getLevel();
@@ -123,6 +113,8 @@ public:
         }
 
         Node *newNode = new Node(k, val, var, level);
+        newNode->nodeID = all_counts;
+        all_counts ++;
         allNodes.push_back(newNode);
 
         if (!entryPoint) {
@@ -272,13 +264,12 @@ public:
     }
 
     std::vector<std::pair<uint64_t, std::string>> search_knn(const std::vector<float> &queryData, int k) {
-        auto start = std::chrono::high_resolution_clock::now();
-
         std::vector<std::pair<uint64_t, std::string>> results;
-        if (!entryPoint)
+        if (!entryPoint){
             return results; // 如果入口点为空，直接返回空结果
-
+        }
         Node *current = entryPoint;
+
         std::vector<Node *> visited; // 记录访问的节点
 
         // 从第 m_L 层开始逐层搜索，直到最底层（层级为0）
@@ -311,18 +302,17 @@ public:
 
         std::unordered_set<Node *> visitedSet; // 已访问节点集合
         std::queue<Node *> tmp;                // BFS 队列
-
         // 初始化：将入口节点加入堆和队列
         candidates.push({getSimilarity(queryData, current->data), current});
         tmp.push(current);
         visitedSet.insert(current); // 将入口节点标记为已访问
 
         // BFS 搜索，逐步扩展候选节点
+        // 
         while (!tmp.empty() && candidates.size() < efConstruction) {
             Node *curNode = tmp.front(); // 获取队列头部元素
             tmp.pop();
 
-            // 遍历当前节点的邻居（这里假设 level=0，即最底层的邻居）
             for (Node *neighbor : curNode->connections[0]) {
                 if (visitedSet.find(neighbor) == visitedSet.end()) {
                     tmp.push(neighbor);          // 将未访问过的邻居加入队列
@@ -341,7 +331,6 @@ public:
             tempResults.push_back(candidates.top().second);
             candidates.pop();
         }
-
         // 结果已经按相似度从小到大排列，反转为从大到小
         std::reverse(tempResults.begin(), tempResults.end());
 
@@ -349,10 +338,9 @@ public:
         int m = 0;
         for (int i = 0; i < (int)tempResults.size() && m < k; ) {
             //std::cout << "try found:"<<i<<std::endl;
-            if(!isDeleted(tempResults[i]->data)){
+            if(tempResults[i]->isValid){
                 results.push_back({tempResults[i]->nodeKey, tempResults[i]->value});
-                m++;
-                
+                m++;    
             }
             ++i;
         }
@@ -367,6 +355,34 @@ public:
         deleted_nodes.clear();
         entryPoint = nullptr;
     }
+    void printInfo() const {
+        std::cout << "===== SearchLayers Debug Info =====\n";
+        for (const auto& node : allNodes) {
+            std::cout << "NodeID: " << node->nodeID
+                      << " NodeKey: " << node->nodeKey
+                      << ", isValid: " << (node->isValid ? "true" : "false")
+                      << ", level: " << node->level << "\n";
+    
+            for (int l = 0; l <= node->level; ++l) {
+                std::cout << "  Level " << l << ": ";
+                if (node->connections[l].empty()) {
+                    std::cout << "(none)";
+                } else {
+                    for (const auto& neighbor : node->connections[l]) {
+                        std::cout << neighbor->nodeID << " ";
+                    }
+                }
+                std::cout << "\n";
+            }
+        }
+    
+        if (entryPoint)
+            std::cout << "Entry: " << entryPoint->nodeID << ", State: " << entryPoint->isValid << "\n";
+        else
+            std::cout << "Entry: (null)\n";
+    
+        std::cout << "===== End of Info =====\n";
+    }    
 };
 
 class KVStore : public KVStoreAPI {

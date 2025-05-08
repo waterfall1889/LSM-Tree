@@ -86,26 +86,15 @@ void KVStore::put(uint64_t key, const std::string &val) {
 
     if (nxtsize + 10240 + 32 <= MAXSIZE) {
         s->insert(key, val); // 小于等于（不超过） 2MB
-        if (val != DEL) {
-            tmp_vec.push_back(val);
-            tmp_key.push_back(key);
-        } else {
-            uint64_t dim   = 768;
-            bufferMap[key] = std::vector<float>(dim, std::numeric_limits<float>::max());
-            this->searchRoute.insertNode(key, DEL, std::vector<float>(dim, std::numeric_limits<float>::max()));
-        }
-
-    } else {
-        if (val != DEL) {
-            tmp_vec.push_back(val);
-            tmp_key.push_back(key);
-        } else {
-            uint64_t dim   = 768;
-            bufferMap[key] = std::vector<float>(dim, std::numeric_limits<float>::max());
-            this->searchRoute.insertNode(key, DEL, std::vector<float>(dim, std::numeric_limits<float>::max()));
-        }
+        tmp_vec.push_back(val);
+        tmp_key.push_back(key);
+    } 
+    else {
+        tmp_vec.push_back(val);
+        tmp_key.push_back(key);
 
         merge_vector();
+
         sstable ss(s);
         s->reset();
         std::string url  = ss.getFilename();
@@ -881,10 +870,11 @@ void KVStore::save_hnsw_index_to_disk(const std::string &hnsw_data_root) {
     // consider the entryPoint and save the main key
     // std::cout << "Entry Key:" << searchRoute.entryPoint->nodeKey << std::endl;
     uint32_t entry = 0;
-    if (!searchRoute.entryPoint) {
-        entry = searchRoute.entryPoint->nodeKey;
+    if (searchRoute.entryPoint) {
+        entry = searchRoute.entryPoint->nodeID;
     }
     outFile.write(reinterpret_cast<const char *>(&entry), sizeof(uint32_t));
+    outFile.write(reinterpret_cast<const char *>(&searchRoute.all_counts), sizeof(uint32_t));
     outFile.close();
 
     // deleted nodes
@@ -932,6 +922,12 @@ void KVStore::save_hnsw_index_to_disk(const std::string &hnsw_data_root) {
         );
         outFileNode.write(
             reinterpret_cast<const char *>(&this->searchRoute.allNodes[node_id]->nodeKey), sizeof(uint64_t)
+        );
+        outFileNode.write(
+            reinterpret_cast<const char *>(&this->searchRoute.allNodes[node_id]->isValid), sizeof(uint64_t)
+        );
+        outFileNode.write(
+            reinterpret_cast<const char *>(&this->searchRoute.allNodes[node_id]->nodeID), sizeof(uint32_t)
         );
         outFileNode.close();
 
@@ -986,7 +982,7 @@ void KVStore::save_hnsw_index_to_disk(const std::string &hnsw_data_root) {
             edgeFile.write(reinterpret_cast<const char *>(&BlockTotal), sizeof(uint32_t));
             // std::cout <<"Level "<<s<<":";
             for (const auto &tmp_nodes : searchRoute.allNodes[node_id]->connections[s]) {
-                uint32_t tmpKey = tmp_nodes->nodeKey;
+                uint32_t tmpKey = tmp_nodes->nodeID;
                 // std::cout << tmpKey << " ";
                 edgeFile.write(reinterpret_cast<const char *>(&tmpKey), sizeof(uint32_t));
             }
@@ -998,11 +994,12 @@ void KVStore::save_hnsw_index_to_disk(const std::string &hnsw_data_root) {
 
 void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root) {
     // load vectors first
-    // load_embedding_from_disk("./embedding_data");
+    load_embedding_from_disk("./embedding_data");
 
-    uint32_t entryKey = 0;
     uint32_t mapSize  = 0;
     uint32_t dim      = 0;
+    uint32_t entryID  = 0;
+    uint32_t alls     = 0;
     this->searchRoute.clear();
 
     // read the global information
@@ -1013,12 +1010,12 @@ void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root) {
         return;
     }
 
-    const int mount_head = 7;
+    const int mount_head = 8;
     std::vector<uint32_t> vec(mount_head);
 
     headFile.read(reinterpret_cast<char *>(vec.data()), sizeof(uint32_t) * mount_head);
 
-    if (!headFile || vec.size() != 7) {
+    if (!headFile || vec.size() != 8) {
         std::cerr << "Unable to read:" << global_head << std::endl;
     } else {
         searchRoute.M              = vec[0];
@@ -1027,11 +1024,14 @@ void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root) {
         searchRoute.m_L            = vec[3];
         mapSize                    = vec[4];
         dim                        = vec[5];
-        entryKey                   = vec[6];
+        entryID                    = vec[6];
+        alls                       = vec[7];
     }
+    searchRoute.all_counts = alls;
 
     headFile.close();
 
+    /*
     // read the deleted nodes
     bool emptyDeletedSlot    = 0;
     std::string deleted_path = hnsw_data_root + "deleted_nodes.bin";
@@ -1060,7 +1060,7 @@ void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root) {
             break;
         }
     }
-    deletedFile.close();
+    deletedFile.close();*/
 
     // read nodes:
     searchRoute.allNodes.resize(mapSize, nullptr);
@@ -1082,9 +1082,13 @@ void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root) {
 
         uint32_t node_level;
         uint64_t node_key;
+        uint64_t validness;
+        uint64_t nodeiD;
 
         nodeFile.read(reinterpret_cast<char *>(&node_level), sizeof(uint32_t));
         nodeFile.read(reinterpret_cast<char *>(&node_key), sizeof(uint64_t));
+        nodeFile.read(reinterpret_cast<char *>(&validness), sizeof(uint64_t));
+        nodeFile.read(reinterpret_cast<char *>(&nodeiD), sizeof(uint32_t));
 
         // fill with data(vec)
         std::string node_vec_path = node_bag + "/data.bin";
@@ -1112,7 +1116,9 @@ void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root) {
 
         // 创建节点对象并填入
         auto *newNode = new SearchLayers::Node(node_key, std::move(value_str), std::move(tVecNode), node_level);
+        newNode ->isValid = validness;
         searchRoute.allNodes[id] = newNode;
+        newNode->nodeID = nodeiD;
     }
 
     for (uint32_t id = 0; id < mapSize; ++id) {
@@ -1148,9 +1154,9 @@ void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root) {
     }
 
     // set entryPoint
-    if (searchRoute.allNodes.size() <= entryKey) {
+    if (searchRoute.allNodes.size() <= entryID) {
         std::cerr << "Entry not exist!" << std::endl;
         return;
     }
-    searchRoute.entryPoint = searchRoute.allNodes[entryKey];
+    searchRoute.entryPoint = searchRoute.allNodes[entryID];
 }

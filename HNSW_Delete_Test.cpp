@@ -32,7 +32,7 @@ int main() {
     content_to_id[text[i]] = i;
   }
 
-  int fake_random_delete_id = 124;
+  int fake_random_delete_id = 121;
   std::string fake_random_delete_content = text[fake_random_delete_id];
 
   auto result = store.search_knn_hnsw(fake_random_delete_content, 3);
@@ -46,7 +46,7 @@ int main() {
     store.del(item.first);
   }
 
-  auto result2 = store.search_knn(fake_random_delete_content, 3);
+  auto result2 = store.search_knn_hnsw(fake_random_delete_content, 3);
   //std::cout << "Current deleted:" << store.searchRoute.deleted_nodes.size() << std::endl;
   //std::cout << "Result size:" << result2.size()<<std::endl;
   if (result2.size() != 3) {
