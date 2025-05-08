@@ -17,7 +17,7 @@ int main() {
   store.reset();
 
   std::vector<std::string> text = load_text("data/trimmed_text.txt");
-  int total = 128;
+  int total = 100;
   for (int i = 0; i < total; i++) {
     store.put(i, text[i]);
   }

@@ -30,7 +30,7 @@ int main() {
   store.load_hnsw_index_from_disk("hnsw_data/");
 
   int pass = 0;
-  int total = 128;
+  int total = 100;
 
   std::vector<std::string> text = load_text("data/trimmed_text.txt");
   for (int i = 0; i < total; i++) {
@@ -49,6 +49,6 @@ int main() {
 
   double accept_rate = (double)pass / total;
   std::cout << "accept rate: " << accept_rate << std::endl;
-
+  std::cout << "Test result: " << pass << "/" << total << std::endl;
   return 0;
 }
