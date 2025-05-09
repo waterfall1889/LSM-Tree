@@ -4,6 +4,12 @@ project(LSM_TREE)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# 强制使用 Release 模式
+set(CMAKE_BUILD_TYPE Release)
+
+# 设置 Release 模式下的优化等级为 -O1
+set(CMAKE_C_FLAGS_RELEASE "-O1 -DNDEBUG")
+set(CMAKE_CXX_FLAGS_RELEASE "-O1 -DNDEBUG")
 
 add_subdirectory(third_party/llama.cpp)
 

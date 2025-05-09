@@ -23,10 +23,10 @@
 class SearchLayers {
 public:
     int all_counts     = 0;
-    int M              = 8;  // 每个节点的最小连接数
-    int M_max          = 12;  // 每个节点的最大连接数
-    int m_L            = 3;  // 最大层数
-    int efConstruction = 120; // 构建时的候选集合大小
+    int M              = 14;  // 每个节点的最小连接数
+    int M_max          = 18;  // 每个节点的最大连接数
+    int m_L            = 9;  // 最大层数
+    int efConstruction = 80; // 构建时的候选集合大小
     const std::string DEL = "~DELETED~";
     
 
@@ -160,7 +160,6 @@ public:
                 // 添加新节点到邻居的连接
                 if (std::find(newNode->connections[l].begin(), newNode->connections[l].end(), neighbor) ==
                     newNode->connections[l].end()) {
-
                     newNode->connections[l].push_back(neighbor);
                 }
 
@@ -272,26 +271,43 @@ public:
 
         std::vector<Node *> visited; // 记录访问的节点
 
-        // 从第 m_L 层开始逐层搜索，直到最底层（层级为0）
         for (int l = m_L; l >= 1; --l) {
-            Node *next    = nullptr;
-            float bestSim = -1;
-
-            // 找到当前层与查询节点最接近的一个节点
-            for (Node *neighbor : current->connections[l]) {
+            const std::vector<Node*>& neighbors = current->connections[l];
+            std::vector<std::pair<float, Node*>> candidates;
+        
+            for (Node *neighbor : neighbors) {
                 float sim = getSimilarity(queryData, neighbor->data);
-                if (sim > bestSim) {
+                candidates.emplace_back(sim, neighbor);
+            }
+        
+            // 降序排列（相似度大 → 小）
+            std::sort(candidates.begin(), candidates.end(),
+                      [](const auto& a, const auto& b) {
+                          return a.first > b.first;
+                      });
+        
+            // 随机性接受策略
+            static std::mt19937 gen(std::random_device{}());
+            static std::uniform_real_distribution<float> dist(0.0f, 1.0f);
+            constexpr int explore_width = 5; // 限制最多考虑前几个候选
+        
+            float bestSim = getSimilarity(queryData, current->data);
+            Node* next = current;
+        
+            for (int i = 0; i < std::min(explore_width, (int)candidates.size()); ++i) {
+                float sim = candidates[i].first;
+                if (sim > bestSim || (sim == bestSim && dist(gen) < 0.2f)) {
                     bestSim = sim;
-                    next    = neighbor;
+                    next = candidates[i].second;
                 }
             }
-
-            // 更新当前节点为下一层的入口点
-            if (next) {
+        
+            if (next != current) {
                 current = next;
                 visited.push_back(current);
             }
         }
+        
 
         // 使用小顶堆存储相似度和节点，保证堆中的元素是按相似度升序排列的
         std::priority_queue<

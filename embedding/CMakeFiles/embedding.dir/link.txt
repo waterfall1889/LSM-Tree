@@ -1,0 +1,2 @@
+/usr/bin/ar qc libembedding.a CMakeFiles/embedding.dir/embedding.cc.o
+/usr/bin/ranlib libembedding.a

@@ -1,0 +1,1 @@
+/usr/bin/c++ -O1 -DNDEBUG CMakeFiles/Embedding_Test.dir/Embedding_Test.cpp.o -o Embedding_Test  -Wl,-rpath,/home/cdm/Desktop/lab-lsm-tree-handout/bin ../embedding/libembedding.a ../third_party/llama.cpp/common/libcommon.a ../bin/libllama.so ../bin/libggml.so ../bin/libggml-cpu.so ../bin/libggml-base.so 

@@ -67,7 +67,8 @@ private:
         phase();
 		int idx = 0, k = 3;
 		for (i = 0; i < max; ++i) {
-			auto res = store.search_knn(test_text[i], k);
+			auto res = store.search_knn_hnsw(test_text[i], k);
+            //auto res = store.search_knn(test_text[i], k);
 			for (auto j : res) {
                 if(store.get(j.first) != j.second) {
                     std::cerr << "TEST Error @" << __FILE__ << ":" << __LINE__;
@@ -116,6 +117,7 @@ public:
         store.reset();
         std::cout << "[Text Test]" << std::endl;
         text_test(120);
+        //store.searchRoute.printInfo();
     }
 };
 

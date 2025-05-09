@@ -1,0 +1,527 @@
+[
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/correctness.dir/correctness.cc.o -c /home/cdm/Desktop/lab-lsm-tree-handout/correctness.cc",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/correctness.cc"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/correctness.dir/kvstore.cc.o -c /home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/correctness.dir/skiplist.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/correctness.dir/sstable.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/correctness.dir/bloom.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/correctness.dir/sstablehead.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/persistence.dir/persistence.cc.o -c /home/cdm/Desktop/lab-lsm-tree-handout/persistence.cc",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/persistence.cc"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/persistence.dir/kvstore.cc.o -c /home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/persistence.dir/skiplist.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/persistence.dir/sstable.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/persistence.dir/bloom.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/persistence.dir/sstablehead.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/timeCompare.dir/timeCompare.cc.o -c /home/cdm/Desktop/lab-lsm-tree-handout/timeCompare.cc",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/timeCompare.cc"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/timeCompare.dir/kvstore.cc.o -c /home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/timeCompare.dir/skiplist.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/timeCompare.dir/sstable.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/timeCompare.dir/bloom.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/timeCompare.dir/sstablehead.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/VectorPersistent1.dir/Vector_Persistent_Test_Phase1.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/Vector_Persistent_Test_Phase1.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/Vector_Persistent_Test_Phase1.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/VectorPersistent1.dir/kvstore.cc.o -c /home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/VectorPersistent1.dir/skiplist.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/VectorPersistent1.dir/sstable.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/VectorPersistent1.dir/bloom.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/VectorPersistent1.dir/sstablehead.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/VectorPersistent2.dir/Vector_Persistent_Test_Phase2.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/Vector_Persistent_Test_Phase2.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/Vector_Persistent_Test_Phase2.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/VectorPersistent2.dir/kvstore.cc.o -c /home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/VectorPersistent2.dir/skiplist.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/VectorPersistent2.dir/sstable.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/VectorPersistent2.dir/bloom.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/VectorPersistent2.dir/sstablehead.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWDeleteTest.dir/HNSW_Delete_Test.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/HNSW_Delete_Test.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/HNSW_Delete_Test.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWDeleteTest.dir/kvstore.cc.o -c /home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWDeleteTest.dir/skiplist.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWDeleteTest.dir/sstable.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWDeleteTest.dir/bloom.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWDeleteTest.dir/sstablehead.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWPersistent1.dir/HNSW_Persistent_Test_Phase1.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/HNSW_Persistent_Test_Phase1.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/HNSW_Persistent_Test_Phase1.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWPersistent1.dir/kvstore.cc.o -c /home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWPersistent1.dir/skiplist.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWPersistent1.dir/sstable.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWPersistent1.dir/bloom.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWPersistent1.dir/sstablehead.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWPersistent2.dir/HNSW_Persistent_Test_Phase2.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/HNSW_Persistent_Test_Phase2.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/HNSW_Persistent_Test_Phase2.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWPersistent2.dir/kvstore.cc.o -c /home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWPersistent2.dir/skiplist.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWPersistent2.dir/sstable.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWPersistent2.dir/bloom.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/HNSWPersistent2.dir/sstablehead.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/cc -DGGML_BUILD -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wdouble-promotion -std=gnu11 -o CMakeFiles/ggml-base.dir/ggml.c.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml.c",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml.c"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/cc -DGGML_BUILD -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wdouble-promotion -std=gnu11 -o CMakeFiles/ggml-base.dir/ggml-alloc.c.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-alloc.c",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-alloc.c"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BUILD -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++17 -o CMakeFiles/ggml-base.dir/ggml-backend.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-backend.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-backend.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BUILD -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++17 -o CMakeFiles/ggml-base.dir/ggml-opt.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-opt.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-opt.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BUILD -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++17 -o CMakeFiles/ggml-base.dir/ggml-threading.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-threading.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-threading.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/cc -DGGML_BUILD -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wdouble-promotion -std=gnu11 -o CMakeFiles/ggml-base.dir/ggml-quants.c.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-quants.c",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-quants.c"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BUILD -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_base_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++17 -o CMakeFiles/ggml-base.dir/gguf.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/gguf.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/gguf.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/cc -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_AARCH64 -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/.. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wdouble-promotion -march=native -fopenmp -std=gnu11 -o CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu.c.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/ggml-cpu.c",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/ggml-cpu.c"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_AARCH64 -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/.. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=native -fopenmp -std=gnu++17 -o CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/ggml-cpu.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/ggml-cpu.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_AARCH64 -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/.. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=native -fopenmp -std=gnu++17 -o CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu-aarch64.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/ggml-cpu-aarch64.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/ggml-cpu-aarch64.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_AARCH64 -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/.. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=native -fopenmp -std=gnu++17 -o CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu-hbm.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/ggml-cpu-hbm.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/ggml-cpu-hbm.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/cc -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_AARCH64 -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/.. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes -Werror=implicit-int -Werror=implicit-function-declaration -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wdouble-promotion -march=native -fopenmp -std=gnu11 -o CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu-quants.c.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/ggml-cpu-quants.c",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/ggml-cpu-quants.c"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_AARCH64 -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/.. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=native -fopenmp -std=gnu++17 -o CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu-traits.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/ggml-cpu-traits.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/ggml-cpu-traits.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_AARCH64 -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/.. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=native -fopenmp -std=gnu++17 -o CMakeFiles/ggml-cpu.dir/ggml-cpu/amx/amx.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/amx/amx.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/amx/amx.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_AARCH64 -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/.. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=native -fopenmp -std=gnu++17 -o CMakeFiles/ggml-cpu.dir/ggml-cpu/amx/mmq.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/amx/mmq.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/amx/mmq.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_BUILD -DGGML_BACKEND_SHARED -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU_AARCH64 -DGGML_USE_LLAMAFILE -DGGML_USE_OPENMP -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_cpu_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/.. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -march=native -fopenmp -std=gnu++17 -o CMakeFiles/ggml-cpu.dir/ggml-cpu/llamafile/sgemm.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/llamafile/sgemm.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-cpu/llamafile/sgemm.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_BUILD -DGGML_SCHED_MAX_COPIES=4 -DGGML_SHARED -DGGML_USE_CPU -D_GNU_SOURCE -D_XOPEN_SOURCE=600 -Dggml_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++17 -o CMakeFiles/ggml.dir/ggml-backend-reg.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-backend-reg.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/ggml-backend-reg.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-adapter.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-adapter.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-adapter.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-arch.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-arch.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-arch.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-batch.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-batch.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-batch.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-chat.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-chat.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-chat.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-context.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-context.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-context.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-grammar.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-grammar.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-grammar.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-graph.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-graph.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-graph.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-hparams.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-hparams.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-hparams.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-impl.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-impl.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-impl.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-io.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-io.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-io.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-kv-cache.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-kv-cache.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-kv-cache.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-memory.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-memory.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-memory.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-mmap.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-mmap.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-mmap.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-model-loader.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-model-loader.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-model-loader.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-model.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-model.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-model.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-quant.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-quant.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-quant.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-sampling.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-sampling.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-sampling.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/llama-vocab.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-vocab.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/llama-vocab.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/unicode-data.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/unicode-data.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/unicode-data.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_BUILD -DLLAMA_SHARED -Dllama_EXPORTS -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/llama.dir/unicode.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/unicode.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/unicode.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common",
+  "command": "/usr/bin/c++   -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/build_info.dir/build-info.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/build-info.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/build-info.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/common.dir/arg.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/arg.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/arg.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/common.dir/chat.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/chat.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/chat.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/common.dir/common.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/common.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/common.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/common.dir/console.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/console.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/console.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/common.dir/json-schema-to-grammar.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/json-schema-to-grammar.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/json-schema-to-grammar.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/common.dir/llguidance.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/llguidance.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/llguidance.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/common.dir/log.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/log.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/log.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/common.dir/ngram-cache.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/ngram-cache.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/ngram-cache.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/common.dir/sampling.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/sampling.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/sampling.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -O1 -DNDEBUG -fPIC -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wno-array-bounds -Wextra-semi -std=gnu++20 -o CMakeFiles/common.dir/speculative.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/speculative.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/speculative.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/embedding",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/embedding.dir/embedding.cc.o -c /home/cdm/Desktop/lab-lsm-tree-handout/embedding/embedding.cc",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/embedding/embedding.cc"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/test",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/Embedding_Test.dir/Embedding_Test.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/test/Embedding_Test.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/test/Embedding_Test.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/test",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/E2E_test.dir/E2E_test.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/test/E2E_test.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/test/E2E_test.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/test",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/E2E_test.dir/__/kvstore.cc.o -c /home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/kvstore.cc"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/test",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/E2E_test.dir/__/skiplist.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/skiplist.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/test",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/E2E_test.dir/__/sstable.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstable.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/test",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/E2E_test.dir/__/bloom.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/bloom.cpp"
+},
+{
+  "directory": "/home/cdm/Desktop/lab-lsm-tree-handout/test",
+  "command": "/usr/bin/c++ -DGGML_BACKEND_SHARED -DGGML_SHARED -DGGML_USE_CPU -DLLAMA_SHARED -I/home/cdm/Desktop/lab-lsm-tree-handout/embedding -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/. -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/src/../common -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/ggml/src/../include -I/home/cdm/Desktop/lab-lsm-tree-handout/third_party/llama.cpp/common/. -O1 -DNDEBUG -std=gnu++20 -o CMakeFiles/E2E_test.dir/__/sstablehead.cpp.o -c /home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp",
+  "file": "/home/cdm/Desktop/lab-lsm-tree-handout/sstablehead.cpp"
+}
+]
