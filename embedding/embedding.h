@@ -18,3 +18,4 @@ std::vector<std::vector<float>> embedding(const std::string& prompt);
 std::vector<float> embedding_single(const std::string& prompt);
 
 std::vector<std::vector<float>> embedding_batch(const std::string& prompts);
+

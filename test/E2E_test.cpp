@@ -68,6 +68,7 @@ private:
 		int idx = 0, k = 3;
 		for (i = 0; i < max; ++i) {
 			auto res = store.search_knn_hnsw(test_text[i], k);
+            //std::cout << "Finished: " << i << std::endl;
             //auto res = store.search_knn(test_text[i], k);
 			for (auto j : res) {
                 if(store.get(j.first) != j.second) {

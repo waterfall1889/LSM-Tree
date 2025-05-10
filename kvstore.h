@@ -23,10 +23,10 @@
 class SearchLayers {
 public:
     int all_counts     = 0;
-    int M              = 14;  // 每个节点的最小连接数
+    int M              = 15;  // 每个节点的最小连接数
     int M_max          = 18;  // 每个节点的最大连接数
-    int m_L            = 9;  // 最大层数
-    int efConstruction = 80; // 构建时的候选集合大小
+    int m_L            = 10;  // 最大层数
+    int efConstruction = 75; // 构建时的候选集合大小
     const std::string DEL = "~DELETED~";
     
 
@@ -54,14 +54,16 @@ public:
     std::vector<std::vector<float>> deleted_nodes; // deleted nodes
     Node *entryPoint = nullptr;
 
-    SearchLayers() {
-        srand(time(nullptr));
+    std::mt19937 rng; // Mersenne Twister 伪随机生成器
+    std::uniform_int_distribution<int> dist;
+
+    SearchLayers() : rng(7), dist(0, m_L) {
         all_counts = 0;
-    } // 初始化随机种子
+    }
 
     // 保持原有随机层数生成方式
     int getLevel() {
-        return rand() % (m_L + 1); // 0到m_L之间的随机数
+        return  dist(rng);
     }
 
     // 余弦相似度计算
