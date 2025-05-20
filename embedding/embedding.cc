@@ -1,4 +1,4 @@
-#include "embedding.h"
+/*#include "embedding.h"
 
 #if defined(_MSC_VER)
 #pragma warning(disable : 4244 4267)  // possible loss of data
@@ -276,4 +276,4 @@ std::vector<float> embedding_single(const std::string& prompt) {
 
 std::vector<std::vector<float>> embedding_batch(const std::string& prompts) {
   return embedding(prompts);
-}
+}*/

@@ -15,6 +15,7 @@
 #include <set>
 #include <string>
 #include <utility>
+using namespace std::chrono;
 
 static const std::string DEL = "~DELETED~";
 const uint32_t MAXSIZE       = 2 * 1024 * 1024;
@@ -66,10 +67,10 @@ KVStore::~KVStore() {
     }
     ss.putFile(ss.getFilename().data());
     compaction();   // 从0层开始尝试合并
-    merge_vector(); // merge all
+    /*merge_vector(); // merge all
 
     collectIntoFiles("embedding_data");
-    save_hnsw_index_to_disk("hnsw_data");
+    save_hnsw_index_to_disk("hnsw_data");*/
 }
 
 /**
@@ -88,12 +89,11 @@ void KVStore::put(uint64_t key, const std::string &val) {
         s->insert(key, val); // 小于等于（不超过） 2MB
         tmp_vec.push_back(val);
         tmp_key.push_back(key);
-    } 
-    else {
+    } else {
         tmp_vec.push_back(val);
         tmp_key.push_back(key);
 
-        merge_vector();
+        //merge_vector();
 
         sstable ss(s);
         s->reset();
@@ -653,29 +653,56 @@ std::string KVStore::fetchString(std::string file, int startOffset, uint32_t len
     return result;
 }
 
-std::vector<std::pair<std::uint64_t, std::string>> KVStore::search_knn(std::string query, int k) { // use as similarity
+std::vector<std::pair<std::uint64_t, std::string>> KVStore::search_knn(std::string query, int k) {
+    using namespace std::chrono;
+
+    auto t_all_start = high_resolution_clock::now();
+
+    auto t1 = high_resolution_clock::now();
     merge_vector();
-    // std::cout << "New Size:" << vectorMap.size()<< std::endl;
-    auto query_vector = embedding_single(query); // 获取查询向量
-    // 存储相似度和对应的键
+    auto t2 = high_resolution_clock::now();
+
+    // 阶段二：计算嵌入
+    auto t3 = high_resolution_clock::now();
+    auto query_vector = embedding_single(query);
+    auto t4 = high_resolution_clock::now();
+
+    // 阶段三：计算相似度
+    auto t5 = high_resolution_clock::now();
     std::vector<std::pair<float, std::uint64_t>> similarities;
-    // 遍历 vectorMap 计算相似度
     for (const auto &entry : vectorMap) {
-        float similarity = getSimilarity(query_vector, entry.second); // 计算相似度
-        similarities.push_back({similarity, entry.first});            // 存储相似度和对应的键
+        float similarity = getSimilarity(query_vector, entry.second);
+        similarities.push_back({similarity, entry.first});
     }
+    auto t6 = high_resolution_clock::now();
 
-    // 按照相似度降序排序
+    // 阶段四：排序
+    auto t7 = high_resolution_clock::now();
     std::sort(similarities.begin(), similarities.end(), std::greater<>());
+    auto t8 = high_resolution_clock::now();
 
-    // 返回最相似的 k 个键值对
+    // 阶段五：获取结果值
+    auto t9 = high_resolution_clock::now();
     std::vector<std::pair<std::uint64_t, std::string>> result;
     for (int i = 0; i < k && i < similarities.size(); ++i) {
-        std::string value = get(similarities[i].second);   // 获取对应的值
-        result.push_back({similarities[i].second, value}); // 存储键值对
+        std::string value = get(similarities[i].second);
+        result.push_back({similarities[i].second, value});
     }
+    auto t10 = high_resolution_clock::now();
+
+    auto t_all_end = high_resolution_clock::now();
+
+    /*std::cout << "KVStore::search_knn 计时报告:\n";
+    std::cout << "  向量归并阶段     : " << duration<double, std::milli>(t2 - t1).count() << " ms\n";
+    std::cout << "  嵌入生成阶段     : " << duration<double, std::milli>(t4 - t3).count() << " ms\n";
+    std::cout << "  相似度计算阶段   : " << duration<double, std::milli>(t6 - t5).count() << " ms\n";
+    std::cout << "  排序阶段         : " << duration<double, std::milli>(t8 - t7).count() << " ms\n";
+    std::cout << "  结果构建阶段     : " << duration<double, std::milli>(t10 - t9).count() << " ms\n";
+    std::cout << "  总耗时           : " << duration<double, std::milli>(t_all_end - t_all_start).count() << " ms\n";*/
+
     return result;
 }
+
 
 float KVStore::getSimilarity(const std::vector<float> &v1, const std::vector<float> &v2) const {
     auto it1 = v1.begin();
@@ -996,10 +1023,10 @@ void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root) {
     // load vectors first
     load_embedding_from_disk("./embedding_data");
 
-    uint32_t mapSize  = 0;
-    uint32_t dim      = 0;
-    uint32_t entryID  = 0;
-    uint32_t alls     = 0;
+    uint32_t mapSize = 0;
+    uint32_t dim     = 0;
+    uint32_t entryID = 0;
+    uint32_t alls    = 0;
     this->searchRoute.clear();
 
     // read the global information
@@ -1030,37 +1057,6 @@ void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root) {
     searchRoute.all_counts = alls;
 
     headFile.close();
-
-    /*
-    // read the deleted nodes
-    bool emptyDeletedSlot    = 0;
-    std::string deleted_path = hnsw_data_root + "deleted_nodes.bin";
-    std::ifstream deletedFile(deleted_path, std::ios::binary);
-    if (!deletedFile) {
-        std::cerr << "Failed to open file: " << deleted_path << std::endl;
-        return;
-    }
-    // 检查文件是否为空
-    deletedFile.seekg(0, std::ios::end);
-    std::streampos fileSize = deletedFile.tellg();
-    if (fileSize == 0) {
-        deletedFile.close();
-        emptyDeletedSlot = 1;
-    }
-
-    // 回到文件开头
-    deletedFile.seekg(0, std::ios::beg);
-
-    while (emptyDeletedSlot == 0) {
-        std::vector<float> vec2(dim);
-        deletedFile.read(reinterpret_cast<char *>(vec2.data()), sizeof(float) * dim);
-        if (deletedFile.gcount() == sizeof(float) * dim) {
-            searchRoute.deleted_nodes.push_back(std::move(vec2));
-        } else {
-            break;
-        }
-    }
-    deletedFile.close();*/
 
     // read nodes:
     searchRoute.allNodes.resize(mapSize, nullptr);
@@ -1115,10 +1111,10 @@ void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root) {
         nodeValFile.close();
 
         // 创建节点对象并填入
-        auto *newNode = new SearchLayers::Node(node_key, std::move(value_str), std::move(tVecNode), node_level);
-        newNode ->isValid = validness;
+        auto *newNode    = new SearchLayers::Node(node_key, std::move(value_str), std::move(tVecNode), node_level);
+        newNode->isValid = validness;
         searchRoute.allNodes[id] = newNode;
-        newNode->nodeID = nodeiD;
+        newNode->nodeID          = nodeiD;
     }
 
     for (uint32_t id = 0; id < mapSize; ++id) {
@@ -1127,7 +1123,7 @@ void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root) {
             std::cerr << "Invalid node at id: " << id << std::endl;
             continue;
         }
-    
+
         std::string node_bag = node_root_path + "/" + std::to_string(id);
         for (int curlevel = 0; curlevel <= curNode->level; ++curlevel) {
             std::string edge_path = node_bag + "/edges/" + std::to_string(curlevel) + ".bin";
@@ -1136,16 +1132,17 @@ void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root) {
                 std::cerr << "Failed to open file: " << edge_path << std::endl;
                 return;
             }
-    
+
             uint32_t edge_count = 0;
             edgeFile.read(reinterpret_cast<char *>(&edge_count), sizeof(uint32_t));
-    
+
             std::vector<uint32_t> neighbor_ids(edge_count);
             edgeFile.read(reinterpret_cast<char *>(neighbor_ids.data()), edge_count * sizeof(uint32_t));
-    
+
             for (uint32_t nid : neighbor_ids) {
                 if (nid >= mapSize || searchRoute.allNodes[nid] == nullptr) {
-                    std::cerr << "Invalid neighbor id: " << nid << " for node " << id << " at level " << curlevel << std::endl;
+                    std::cerr << "Invalid neighbor id: " << nid << " for node " << id << " at level " << curlevel
+                              << std::endl;
                     continue;
                 }
                 curNode->connections[curlevel].push_back(searchRoute.allNodes[nid]);
@@ -1159,4 +1156,134 @@ void KVStore::load_hnsw_index_from_disk(const std::string &hnsw_data_root) {
         return;
     }
     searchRoute.entryPoint = searchRoute.allNodes[entryID];
+}
+
+std::vector<float> parseEmbeddingLine(const std::string &line) {
+    std::vector<float> embedding;
+    size_t start = line.find('[');
+    size_t end   = line.find(']');
+    if (start == std::string::npos || end == std::string::npos || end <= start) {
+        throw std::runtime_error("Malformed embedding line.");
+    }
+
+    std::string content = line.substr(start + 1, end - start - 1);
+    std::stringstream ss(content);
+    std::string token;
+    while (std::getline(ss, token, ',')) {
+        embedding.push_back(std::stof(token));
+    }
+
+    if (embedding.size() != 768) {
+        throw std::runtime_error("Expected 768 dimensions but got " + std::to_string(embedding.size()));
+    }
+
+    return embedding;
+}
+
+// consider read from the two big data file.
+
+void KVStore::read_build_from_text(const std::string &string_path, const std::string &vector_path,uint64_t max) {
+    // read into buffer and then merge into the map.
+    // read the text
+
+    std::ifstream textFile(string_path);
+    std::ifstream embFile(vector_path);
+
+    if (!textFile.is_open() || !embFile.is_open()) {
+        throw std::runtime_error("Failed to open one or both input files.");
+    }
+
+    std::string textLine, embLine;
+    size_t lineIndex = 0;
+    uint32_t count   = 0;
+
+    // 在函数开始前定义累计时间变量
+    auto start_total = high_resolution_clock::now();
+
+    uint64_t total_parse_time_us      = 0;
+    uint64_t total_insertNode_time_us = 0;
+    uint64_t total_memInsert_time_us  = 0;
+    uint64_t total_compact_time_ms    = 0;
+    uint32_t compact_count            = 0;
+
+    // 主循环中加入计时
+    while (std::getline(textFile, textLine) && std::getline(embFile, embLine) && count < max) {
+        if (lineIndex % 2 == 0) {
+            try {
+                auto start_parse       = high_resolution_clock::now();
+                std::vector<float> vec = parseEmbeddingLine(embLine);
+                vectorMap[count] = vec;
+                auto end_parse         = high_resolution_clock::now();
+                total_parse_time_us += duration_cast<microseconds>(end_parse - start_parse).count();
+
+                auto start_insertNode = high_resolution_clock::now();
+                this->searchRoute.insertNode(count, textLine, vec);
+                auto end_insertNode = high_resolution_clock::now();
+                total_insertNode_time_us += duration_cast<microseconds>(end_insertNode - start_insertNode).count();
+
+                auto start_memInsert = high_resolution_clock::now();
+                uint32_t nxtsize     = s->getBytes();
+                std::string res      = s->search(count);
+                if (!res.length()) {
+                    nxtsize += 12 + textLine.length();
+                } else {
+                    nxtsize = nxtsize - res.length() + textLine.length();
+                }
+
+                if (nxtsize + 10240 + 32 <= MAXSIZE) {
+                    s->insert(count, textLine);
+                } else {
+                    auto start_compact = high_resolution_clock::now();
+                    sstable ss(s);
+                    s->reset();
+                    std::string url  = ss.getFilename();
+                    std::string path = "./data/level-0";
+                    if (!utils::dirExists(path)) {
+                        utils::mkdir(path.data());
+                        totalLevel = 0;
+                    }
+                    addsstable(ss, 0);
+                    ss.putFile(url.data());
+                    compaction();
+                    auto end_compact = high_resolution_clock::now();
+                    total_compact_time_ms += duration_cast<milliseconds>(end_compact - start_compact).count();
+                    ++compact_count;
+
+                    s->insert(count, textLine);
+                }
+                auto end_memInsert = high_resolution_clock::now();
+                total_memInsert_time_us += duration_cast<microseconds>(end_memInsert - start_memInsert).count();
+                //std::cout << "finished: "<< count << std::endl;
+
+                ++count;
+                
+            } catch (const std::exception &ex) {
+                std::cerr << "Error at line " << lineIndex << ": " << ex.what() << std::endl;
+            }
+        }
+        ++lineIndex;
+    }
+
+    auto end_total    = high_resolution_clock::now();
+    auto total_time_s = duration_cast<seconds>(end_total - start_total).count();
+
+    // 输出汇总结果
+    std::cout << "\n====== Performance Summary ======\n";
+    std::cout << "Total entries loaded: " << count << "\n";
+    std::cout << "Total time taken: " << total_time_s << " s\n\n";
+
+    std::cout << "[Parse Embedding] Total: " << total_parse_time_us / 1000.0
+              << " ms, Average: " << (count ? total_parse_time_us / count : 0) << " us\n";
+
+    std::cout << "[Insert to Route] Total: " << total_insertNode_time_us / 1000.0
+              << " ms, Average: " << (count ? total_insertNode_time_us / count : 0) << " us\n";
+
+    std::cout << "[Insert to Memtable] Total: " << total_memInsert_time_us / 1000.0
+              << " ms, Average: " << (count ? total_memInsert_time_us / count : 0) << " us\n";
+
+    std::cout << "[Compaction] Total: " << total_compact_time_ms << " ms, Times triggered: " << compact_count
+              << ", Avg per compaction: " << (compact_count ? (total_compact_time_ms * 1000) / compact_count : 0)
+              << " us\n";
+
+    std::cout << "=================================\n";
 }
